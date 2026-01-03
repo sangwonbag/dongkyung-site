@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>업자 전용 | 작업 올리기</title>
+  <style>
+    :root { --bg:#0b0c10; --card:#111318; --text:#eaf0ff; --muted:#a7b0c0; --line:#242a36; --ok:#2b64ff; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:920px;margin:0 auto;padding:28px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .top a{color:var(--muted);font-size:13px}
+    h1{margin:12px 0 6px;font-size:22px}
+    p{margin:0 0 16px;color:var(--muted);line-height:1.6;font-size:13px}
+    .card{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:16px}
+    label{display:block;margin:12px 0 6px;color:var(--muted);font-size:13px}
+    input,select,textarea{
+      width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);
+      background:#0f1117;color:var(--text);outline:none;
+    }
+    textarea{min-height:90px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:760px){.row{grid-template-columns:1fr 1fr}}
+    .btns{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#151a24;cursor:pointer;color:var(--text)}
+    .btn.primary{background:var(--ok);border-color:var(--ok)}
+    .hint{margin-top:10px;color:var(--muted);font-size:12px;line-height:1.6}
+    .result{margin-top:12px;padding:12px 14px;border-radius:14px;border:1px dashed var(--line);color:var(--muted);font-size:13px}
+    .ok{color:#c7d2ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <a href="./index.html">← 메인으로</a>
+      <a href="./contractor.html">시공사 화면 보기 →</a>
+    </div>
+
+    <h1>작업 올리기 (MVP)</h1>
+    <p>주소/날짜/평수/자재만 입력하세요. 지급 금액은 기준으로 자동 안내됩니다.</p>
+
+    <div class="card">
+      <div class="row">
+        <div>
+          <label>주소</label>
+          <input id="addr" placeholder="예) 서울 강남구 테헤란로 123" />
+        </div>
+        <div>
+          <label>작업 날짜</label>
+          <input id="date" type="date" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label>평수</label>
+          <input id="pyeong" type="number" min="1" placeholder="예) 18" />
+        </div>
+        <div>
+          <label>자재</label>
+          <select id="material">
+            <option value="데코타일">데코타일</option>
+            <option value="장판">장판</option>
+            <option value="마루">마루</option>
+            <option value="기타">기타</option>
+          </select>
+        </div>
+      </div>
+
+      <label>요청사항(선택)</label>
+      <textarea id="note" placeholder="엘리베이터/주차/철거 여부 등"></textarea>
+
+      <div class="btns">
+        <button class="btn primary" onclick="submitJob()">작업 올리기</button>
+        <button class="btn" onclick="resetForm()">초기화</button>
+      </div>
+
+      <div class="result" id="result">지급 금액 안내가 여기에 표시됩니다.</div>
+
+      <div class="hint">
+        ※ 지금은 “제출”이 DB에 저장되지 않고, 화면에서만 확인되는 데모입니다.<br/>
+        다음 단계에서 Firebase 연결하면 “업자 올림 → 시공사 리스트 자동 노출”로 바로 이어집니다.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ✅ 너가 말한 지급 룰 반영 (MVP 계산)
+    // - 25평 이상: 평당 9,000원
+    // - 1~24평: 3구간 120,000 / 180,000 / 220,000
+    function calcPay(p) {
+      if (!p || p <= 0) return null;
+      if (p >= 25) return `${(p * 9000).toLocaleString()}원 (평당 9,000원)`;
+      if (p <= 8) return "120,000원 (1~8평)";
+      if (p <= 16) return "180,000원 (9~16평)";
+      return "220,000원 (17~24평)";
+    }
+
+    function submitJob() {
+      const addr = document.getElementById("addr").value.trim();
+      const date = document.getElementById("date").value;
+      const pyeong = parseInt(document.getElementById("pyeong").value, 10);
+      const material = document.getElementById("material").value;
+      const note = document.getElementById("note").value.trim();
+
+      const pay = calcPay(pyeong);
+      const res = document.getElementById("result");
+
+      if (!addr || !date || !pyeong) {
+        res.innerHTML = "⚠️ 주소/날짜/평수는 필수입니다.";
+        return;
+      }
+      res.innerHTML = `
+        <div class="ok">✅ 작업이 ‘등록된 것처럼’ 처리되었습니다 (데모).</div>
+        <div style="margin-top:8px">
+          📍 ${addr}<br/>
+          📅 ${date}<br/>
+          📐 ${pyeong}평<br/>
+          📦 ${material}<br/>
+          💰 지급: <b>${pay}</b><br/>
+          📝 ${note ? note : "요청사항 없음"}<br/><br/>
+          <b>자재 수령:</b> 경기 하남시 서하남로 37 (동경바닥재)
+        </div>
+      `;
+    }
+
+    function resetForm() {
+      ["addr","date","pyeong","note"].forEach(id => document.getElementById(id).value = "");
+      document.getElementById("material").value = "데코타일";
+      document.getElementById("result").textContent = "지급 금액 안내가 여기에 표시됩니다.";
+    }
+  </script>
+</body>
+</html>
