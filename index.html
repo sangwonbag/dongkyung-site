@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>동경바닥재 | 자재·시공 업무 시스템</title>
-  <meta name="description" content="동경바닥재 자재 안내 및 시공 업무(작업 매칭) 시스템" />
+  <title>동경바닥재 | 자재·시공 업무</title>
+  <meta name="description" content="업자는 사람 구하고, 시공사는 일 잡는 동경바닥재 업무 시스템" />
   <style>
     :root { --bg:#0b0c10; --card:#111318; --text:#eaf0ff; --muted:#a7b0c0; --line:#242a36; }
     *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text)}
@@ -26,12 +26,16 @@
     .btns{display:flex;gap:10px;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#151a24}
     .btn.primary{background:#2b64ff;border-color:#2b64ff}
+    .btn.danger{background:#ff3b57;border-color:#ff3b57}
     .btn small{opacity:.9}
     .info{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px}
     @media (min-width:760px){.info{grid-template-columns:1fr 1fr}}
     .row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
     footer{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.6}
-    .warn{margin-top:12px;padding:12px 14px;border:1px solid #2a3550;border-radius:14px;background:#0f1320;color:#c7d2ff}
+    .notice{margin-top:12px;padding:12px 14px;border:1px solid #2a3550;border-radius:14px;background:#0f1320;color:#c7d2ff}
+    .notice b{color:#eaf0ff}
+    .kicker{display:inline-flex;gap:8px;align-items:center;color:#c7d2ff;font-size:12px;margin-bottom:10px}
+    .dot{width:8px;height:8px;border-radius:50%;background:#2b64ff;display:inline-block}
   </style>
 </head>
 <body>
@@ -45,46 +49,53 @@
     </div>
 
     <section class="hero">
-      <h1>자재는 사무실에서 수령, 일은 여기서 확인</h1>
+      <div class="kicker"><span class="dot"></span>현장용 최소 기능 버전</div>
+      <h1>일은 여기서 잡고, 자재는 사무실에서</h1>
       <p>
-        업자는 작업을 올리고, 시공사는 작업을 잡습니다.<br/>
+        업자는 <b>사람 구하기</b> — 시공사는 <b>원하는 일만 잡기</b>.<br/>
         <b>모든 작업 자재는 동경바닥재 사무실에서 수령</b>합니다.
       </p>
 
-      <div class="warn">
-        ✔️ 지금 버전은 “최소 기능”만 넣은 MVP입니다. 채팅/결제/정산은 추후 확장합니다.
+      <div class="notice">
+        ✅ 지금은 “최소 기능”만 넣은 MVP입니다.<br/>
+        <b>채팅/결제/정산은 추후 확장</b>하고, 현재는 <b>배정·수령 흐름</b>만 빠르게 돌립니다.
+      </div>
+
+      <div class="notice" style="margin-top:10px">
+        🔒 운영 안내: 모든 작업은 내부 기준에 따라 <b>선별·배정</b>되며, 일정·품질은 당사 관리 기준을 따릅니다.
       </div>
     </section>
 
     <section class="grid">
       <div class="card">
         <h2>시공사 전용</h2>
-        <p>오늘 올라온 작업을 확인하고, 원하는 작업을 “잡기” 버튼으로 배정받습니다.</p>
+        <p>가능한 작업을 확인하고, <b>잡기</b> 버튼으로 배정받습니다. 자재는 사무실에서 바로 수령합니다.</p>
         <div class="btns">
-          <a class="btn primary" href="./contractor.html">오늘 작업 보기 <small>→</small></a>
+          <a class="btn primary" href="./contractor.html">지금 잡을 수 있는 일 보기 <small>→</small></a>
           <a class="btn" href="tel:02-487-9775">전화 문의 <small>02-487-9775</small></a>
         </div>
       </div>
 
       <div class="card">
         <h2>업자 전용</h2>
-        <p>주소/날짜/평수/자재만 입력하면 작업이 올라갑니다. (지급 금액은 기준으로 자동 안내)</p>
+        <p>주소/날짜/평수만 입력하면 끝. <b>전화 돌릴 필요 없이</b> 시공사 배정 흐름으로 넘어갑니다.</p>
         <div class="btns">
-          <a class="btn primary" href="./poster.html">작업 올리기 <small>→</small></a>
+          <a class="btn primary" href="./poster.html">사람 구하기 (작업 등록) <small>→</small></a>
           <a class="btn" href="mailto:dongk3089@naver.com">이메일 <small>dongk3089@naver.com</small></a>
         </div>
       </div>
     </section>
 
     <section class="info">
-      <div class="row"><span>주소</span><span>경기 하남시 서하남로 37</span></div>
+      <div class="row"><span>자재 수령지</span><span>경기 하남시 서하남로 37</span></div>
+      <div class="row"><span>고객센터</span><span>02-487-9775</span></div>
       <div class="row"><span>팩스</span><span>02-487-9787</span></div>
       <div class="row"><span>사업자등록번호</span><span>890-88-02243</span></div>
-      <div class="row"><span>저작권</span><span>ⓒ 2025 DongKyung Flooring</span></div>
     </section>
 
     <footer>
-      ※ 본 사이트는 업무용 MVP 페이지입니다. 작업 배정 및 일정은 내부 기준에 따라 변경될 수 있습니다.
+      ⓒ 2025 DongKyung Flooring. All rights reserved.<br/>
+      ※ 본 페이지는 업무용 MVP입니다. 작업 배정 및 일정은 내부 기준에 따라 변경될 수 있습니다.
     </footer>
   </div>
 </body>
