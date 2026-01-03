@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>동경바닥재 | 자재·시공 업무 시스템</title>
+  <meta name="description" content="동경바닥재 자재 안내 및 시공 업무(작업 매칭) 시스템" />
+  <style>
+    :root { --bg:#0b0c10; --card:#111318; --text:#eaf0ff; --muted:#a7b0c0; --line:#242a36; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text)}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:920px;margin:0 auto;padding:28px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .brand{display:flex;flex-direction:column;gap:4px}
+    .brand strong{font-size:18px;letter-spacing:.2px}
+    .brand span{font-size:13px;color:var(--muted)}
+    .pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:8px 10px;border-radius:999px}
+    .hero{margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#121521,#0b0c10)}
+    .hero h1{margin:0 0 8px;font-size:26px}
+    .hero p{margin:0;color:var(--muted);line-height:1.6}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
+    @media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
+    .card{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+    .card h2{margin:0 0 8px;font-size:16px}
+    .card p{margin:0 0 12px;color:var(--muted);line-height:1.6;font-size:13px}
+    .btns{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#151a24}
+    .btn.primary{background:#2b64ff;border-color:#2b64ff}
+    .btn small{opacity:.9}
+    .info{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px}
+    @media (min-width:760px){.info{grid-template-columns:1fr 1fr}}
+    .row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.6}
+    .warn{margin-top:12px;padding:12px 14px;border:1px solid #2a3550;border-radius:14px;background:#0f1320;color:#c7d2ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <strong>동경바닥재</strong>
+        <span>자재·시공 업무 시스템 (MVP)</span>
+      </div>
+      <div class="pill">평일 07:00-18:00 / 주말 07:00-12:00</div>
+    </div>
+
+    <section class="hero">
+      <h1>자재는 사무실에서 수령, 일은 여기서 확인</h1>
+      <p>
+        업자는 작업을 올리고, 시공사는 작업을 잡습니다.<br/>
+        <b>모든 작업 자재는 동경바닥재 사무실에서 수령</b>합니다.
+      </p>
+
+      <div class="warn">
+        ✔️ 지금 버전은 “최소 기능”만 넣은 MVP입니다. 채팅/결제/정산은 추후 확장합니다.
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>시공사 전용</h2>
+        <p>오늘 올라온 작업을 확인하고, 원하는 작업을 “잡기” 버튼으로 배정받습니다.</p>
+        <div class="btns">
+          <a class="btn primary" href="./contractor.html">오늘 작업 보기 <small>→</small></a>
+          <a class="btn" href="tel:02-487-9775">전화 문의 <small>02-487-9775</small></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>업자 전용</h2>
+        <p>주소/날짜/평수/자재만 입력하면 작업이 올라갑니다. (지급 금액은 기준으로 자동 안내)</p>
+        <div class="btns">
+          <a class="btn primary" href="./poster.html">작업 올리기 <small>→</small></a>
+          <a class="btn" href="mailto:dongk3089@naver.com">이메일 <small>dongk3089@naver.com</small></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="info">
+      <div class="row"><span>주소</span><span>경기 하남시 서하남로 37</span></div>
+      <div class="row"><span>팩스</span><span>02-487-9787</span></div>
+      <div class="row"><span>사업자등록번호</span><span>890-88-02243</span></div>
+      <div class="row"><span>저작권</span><span>ⓒ 2025 DongKyung Flooring</span></div>
+    </section>
+
+    <footer>
+      ※ 본 사이트는 업무용 MVP 페이지입니다. 작업 배정 및 일정은 내부 기준에 따라 변경될 수 있습니다.
+    </footer>
+  </div>
+</body>
+</html>
