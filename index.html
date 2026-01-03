@@ -3,91 +3,217 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>동경바닥재 | 자재·시공 업무</title>
-  <meta name="description" content="업자는 사람 구하고, 시공사는 일 잡는 동경바닥재 업무 시스템" />
+  <title>동경바닥재 | 자재 쇼룸</title>
+  <meta name="description" content="동경바닥재 자재 쇼룸 - 데코타일/장판/마루/벽지/카페트타일. 사무실 특가 및 자재 정보." />
   <style>
-    :root { --bg:#0b0c10; --card:#111318; --text:#eaf0ff; --muted:#a7b0c0; --line:#242a36; }
-    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text)}
+    :root{
+      --bg:#ffffff;
+      --card:#ffffff;
+      --text:#101828;
+      --muted:#667085;
+      --line:#EAECF0;
+      --soft:#F9FAFB;
+      --primary:#1D4ED8; /* 포인트 컬러(블루) */
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
     a{color:inherit;text-decoration:none}
-    .wrap{max-width:920px;margin:0 auto;padding:28px}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:14px}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px}
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 0 18px;border-bottom:1px solid var(--line);
+    }
     .brand{display:flex;flex-direction:column;gap:4px}
     .brand strong{font-size:18px;letter-spacing:.2px}
     .brand span{font-size:13px;color:var(--muted)}
-    .pill{font-size:12px;color:var(--muted);border:1px solid var(--line);padding:8px 10px;border-radius:999px}
-    .hero{margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#121521,#0b0c10)}
-    .hero h1{margin:0 0 8px;font-size:26px}
+    .topRight{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    .pill{
+      font-size:12px;color:var(--muted);border:1px solid var(--line);
+      padding:8px 10px;border-radius:999px;background:#fff;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+      background:#fff;font-size:13px;
+    }
+    .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+    .hero{
+      margin-top:18px;border:1px solid var(--line);border-radius:16px;
+      background:linear-gradient(180deg,#ffffff,#F9FAFB);
+      padding:18px;
+    }
+    .hero h1{margin:0 0 8px;font-size:24px}
     .hero p{margin:0;color:var(--muted);line-height:1.6}
-    .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
-    @media (min-width:760px){.grid{grid-template-columns:1fr 1fr}}
-    .card{padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
-    .card h2{margin:0 0 8px;font-size:16px}
-    .card p{margin:0 0 12px;color:var(--muted);line-height:1.6;font-size:13px}
-    .btns{display:flex;gap:10px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#151a24}
-    .btn.primary{background:#2b64ff;border-color:#2b64ff}
-    .btn.danger{background:#ff3b57;border-color:#ff3b57}
-    .btn small{opacity:.9}
-    .info{margin-top:14px;display:grid;grid-template-columns:1fr;gap:10px}
-    @media (min-width:760px){.info{grid-template-columns:1fr 1fr}}
-    .row{display:flex;justify-content:space-between;gap:10px;padding:12px 14px;border:1px dashed var(--line);border-radius:14px;color:var(--muted);font-size:13px}
-    footer{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.6}
-    .notice{margin-top:12px;padding:12px 14px;border:1px solid #2a3550;border-radius:14px;background:#0f1320;color:#c7d2ff}
-    .notice b{color:#eaf0ff}
-    .kicker{display:inline-flex;gap:8px;align-items:center;color:#c7d2ff;font-size:12px;margin-bottom:10px}
-    .dot{width:8px;height:8px;border-radius:50%;background:#2b64ff;display:inline-block}
+    .grid{
+      display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px;
+    }
+    @media(min-width:860px){.grid{grid-template-columns:2fr 1fr}}
+    .card{
+      border:1px solid var(--line);border-radius:16px;background:var(--card);padding:16px;
+    }
+    .card h2{margin:0 0 10px;font-size:16px}
+    .sub{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.6}
+    .dealGrid{
+      display:grid;grid-template-columns:1fr;gap:10px;
+    }
+    @media(min-width:700px){.dealGrid{grid-template-columns:1fr 1fr}}
+    .deal{
+      border:1px solid var(--line);border-radius:14px;background:var(--soft);
+      padding:12px;display:flex;gap:12px;align-items:center;
+    }
+    .thumb{
+      width:64px;height:64px;border-radius:12px;border:1px solid var(--line);
+      background:#fff;display:flex;align-items:center;justify-content:center;
+      color:var(--muted);font-size:12px;flex:0 0 auto;
+    }
+    .deal strong{display:block;font-size:14px;margin-bottom:4px}
+    .price{font-size:13px;color:var(--muted)}
+    .price s{opacity:.7}
+    .price b{color:var(--text)}
+    .tag{
+      display:inline-flex;align-items:center;
+      font-size:11px;padding:4px 8px;border-radius:999px;
+      background:#EEF2FF;border:1px solid #E0E7FF;color:#3730A3;
+      margin-top:6px;
+    }
+
+    .cats{
+      display:grid;grid-template-columns:1fr;gap:10px;
+    }
+    @media(min-width:700px){.cats{grid-template-columns:1fr 1fr}}
+    .cat{
+      border:1px solid var(--line);border-radius:14px;background:#fff;
+      padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;
+    }
+    .cat b{font-size:14px}
+    .cat span{font-size:12px;color:var(--muted)}
+    .arrow{color:var(--muted)}
+    .info{
+      margin-top:16px;display:grid;grid-template-columns:1fr;gap:10px;
+    }
+    @media(min-width:860px){.info{grid-template-columns:1fr 1fr}}
+    .row{
+      display:flex;justify-content:space-between;gap:10px;
+      padding:12px 14px;border:1px dashed var(--line);border-radius:14px;
+      color:var(--muted);font-size:13px;background:#fff;
+    }
+    footer{
+      margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+      color:var(--muted);font-size:12px;line-height:1.6;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
+    <!-- TOP -->
     <div class="top">
       <div class="brand">
         <strong>동경바닥재</strong>
-        <span>자재·시공 업무 시스템 (MVP)</span>
+        <span>자재 쇼룸 · 사무실 특가 · 시공 업무</span>
       </div>
-      <div class="pill">평일 07:00-18:00 / 주말 07:00-12:00</div>
+      <div class="topRight">
+        <span class="pill">평일 07:00-18:00 / 주말 07:00-12:00</span>
+        <a class="btn" href="tel:02-487-9775">전화 02-487-9775</a>
+        <a class="btn primary" href="./contractor.html">시공사 전용</a>
+        <a class="btn" href="./poster.html">업자 전용</a>
+      </div>
     </div>
 
+    <!-- HERO -->
     <section class="hero">
-      <div class="kicker"><span class="dot"></span>현장용 최소 기능 버전</div>
-      <h1>일은 여기서 잡고, 자재는 사무실에서</h1>
+      <h1>자재가 한눈에 보이는 쇼룸</h1>
       <p>
-        업자는 <b>사람 구하기</b> — 시공사는 <b>원하는 일만 잡기</b>.<br/>
-        <b>모든 작업 자재는 동경바닥재 사무실에서 수령</b>합니다.
+        데코타일/장판/마루/벽지/카페트타일 자재 정보를 정리해둡니다.<br/>
+        <b>사무실 특가</b>는 수시로 업데이트됩니다. (자재 수령: 경기 하남시 서하남로 37)
       </p>
-
-      <div class="notice">
-        ✅ 지금은 “최소 기능”만 넣은 MVP입니다.<br/>
-        <b>채팅/결제/정산은 추후 확장</b>하고, 현재는 <b>배정·수령 흐름</b>만 빠르게 돌립니다.
-      </div>
-
-      <div class="notice" style="margin-top:10px">
-        🔒 운영 안내: 모든 작업은 내부 기준에 따라 <b>선별·배정</b>되며, 일정·품질은 당사 관리 기준을 따릅니다.
-      </div>
     </section>
 
-    <section class="grid">
-      <div class="card">
-        <h2>시공사 전용</h2>
-        <p>가능한 작업을 확인하고, <b>잡기</b> 버튼으로 배정받습니다. 자재는 사무실에서 바로 수령합니다.</p>
-        <div class="btns">
-          <a class="btn primary" href="./contractor.html">지금 잡을 수 있는 일 보기 <small>→</small></a>
-          <a class="btn" href="tel:02-487-9775">전화 문의 <small>02-487-9775</small></a>
-        </div>
-      </div>
+    <div class="grid">
+      <!-- LEFT: DEALS -->
+      <section class="card">
+        <h2>오늘의 사무실 특가</h2>
+        <p class="sub">사무실 방문/전화 문의 시 확인 가능합니다. (예시 카드 — 나중에 실제 품목으로 교체)</p>
 
-      <div class="card">
-        <h2>업자 전용</h2>
-        <p>주소/날짜/평수만 입력하면 끝. <b>전화 돌릴 필요 없이</b> 시공사 배정 흐름으로 넘어갑니다.</p>
-        <div class="btns">
-          <a class="btn primary" href="./poster.html">사람 구하기 (작업 등록) <small>→</small></a>
-          <a class="btn" href="mailto:dongk3089@naver.com">이메일 <small>dongk3089@naver.com</small></a>
+        <div class="dealGrid">
+          <div class="deal">
+            <div class="thumb">IMG</div>
+            <div>
+              <strong>데코타일 · (예시) KCC 센스타일</strong>
+              <div class="price"><s>24,000원</s> → <b>22,500원</b> / Box</div>
+              <div class="tag">사무실 특가</div>
+            </div>
+          </div>
+
+          <div class="deal">
+            <div class="thumb">IMG</div>
+            <div>
+              <strong>장판 · (예시) 1.8T</strong>
+              <div class="price"><s>—</s> → <b>전화문의</b></div>
+              <div class="tag">재고 소진 시 종료</div>
+            </div>
+          </div>
+
+          <div class="deal">
+            <div class="thumb">IMG</div>
+            <div>
+              <strong>마루 · (예시) 강마루</strong>
+              <div class="price"><s>—</s> → <b>전화문의</b></div>
+              <div class="tag">현장 조건 확인</div>
+            </div>
+          </div>
+
+          <div class="deal">
+            <div class="thumb">IMG</div>
+            <div>
+              <strong>카페트타일 · (예시) 500각</strong>
+              <div class="price"><s>—</s> → <b>전화문의</b></div>
+              <div class="tag">대량 별도</div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- RIGHT: CATEGORIES -->
+      <section class="card">
+        <h2>자재 카테고리</h2>
+        <p class="sub">카테고리 클릭 → 제품/시리즈 정리 페이지로 이동 (지금은 껍데기부터 만듭니다)</p>
+
+        <div class="cats">
+          <a class="cat" href="./materials_deco.html">
+            <div><b>데코타일</b><br><span>규격/두께/박스단위</span></div>
+            <div class="arrow">→</div>
+          </a>
+          <a class="cat" href="./materials_sheet.html">
+            <div><b>장판</b><br><span>두께/폭/롤 단위</span></div>
+            <div class="arrow">→</div>
+          </a>
+          <a class="cat" href="./materials_maru.html">
+            <div><b>마루</b><br><span>강마루/강화/원목</span></div>
+            <div class="arrow">→</div>
+          </a>
+          <a class="cat" href="./materials_wallpaper.html">
+            <div><b>벽지</b><br><span>합지/실크/부자재</span></div>
+            <div class="arrow">→</div>
+          </a>
+          <a class="cat" href="./materials_carpet.html">
+            <div><b>카페트타일</b><br><span>500각/재단/시공</span></div>
+            <div class="arrow">→</div>
+          </a>
+          <a class="cat" href="./materials_accessory.html">
+            <div><b>부자재</b><br><span>본드/현장풀/걸레받이</span></div>
+            <div class="arrow">→</div>
+          </a>
+        </div>
+      </section>
+    </div>
 
     <section class="info">
-      <div class="row"><span>자재 수령지</span><span>경기 하남시 서하남로 37</span></div>
+      <div class="row"><span>주소</span><span>경기 하남시 서하남로 37</span></div>
       <div class="row"><span>고객센터</span><span>02-487-9775</span></div>
       <div class="row"><span>팩스</span><span>02-487-9787</span></div>
       <div class="row"><span>사업자등록번호</span><span>890-88-02243</span></div>
@@ -95,7 +221,7 @@
 
     <footer>
       ⓒ 2025 DongKyung Flooring. All rights reserved.<br/>
-      ※ 본 페이지는 업무용 MVP입니다. 작업 배정 및 일정은 내부 기준에 따라 변경될 수 있습니다.
+      ※ 본 사이트는 자재 정보 및 업무 흐름(MVP)을 위한 페이지입니다. 가격/재고는 변동될 수 있습니다.
     </footer>
   </div>
 </body>
