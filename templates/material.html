@@ -26,26 +26,28 @@
     .cta { margin-top: 40px; padding: 20px; border: 1px solid #ddd; background: #fafafa; font-size: 15px; }
     .cta strong { display:block; margin-bottom: 6px; }
     .footer { margin-top: 60px; font-size: 13px; color: #888; }
-  </style>
-  .controls{
+    .controls{
   max-width:960px;margin:0 auto 14px auto;padding:0 20px;
   display:flex;gap:10px;flex-wrap:wrap;align-items:center;
 }
 .controls input{
-  flex:1;min-width:240px;padding:10px 12px;border:1px solid var(--line);
+  flex:1;min-width:240px;padding:10px 12px;border:1px solid #e5e5e5;
   border-radius:12px;font-size:14px;
 }
 .controls select{
-  padding:10px 12px;border:1px solid var(--line);border-radius:12px;font-size:14px;
+  padding:10px 12px;border:1px solid #e5e5e5;
+border-radius:12px;font-size:14px;
   background:#fff;
 }
 .cats{display:flex;gap:8px;flex-wrap:wrap}
 .cats button{
-  border:1px solid var(--line);background:#fff;border-radius:999px;
+ border:1px solid #e5e5e5;
+ background:#fff;border-radius:999px;
   padding:8px 10px;font-size:13px;cursor:pointer;
 }
 .cats button.active{background:#111;color:#fff;border-color:#111;}
 
+  </style>
 </head>
 
 <body>
@@ -58,6 +60,7 @@
 <div class="controls">
   <input id="q" type="search" placeholder="검색: 제품명/브랜드/시리즈/품번" />
   <div id="cats" class="cats"></div>
+  <div id="brands" class="cats"></div>
   <select id="sort">
     <option value="default">정렬: 기본</option>
     <option value="price_asc">가격: 낮은→높은</option>
