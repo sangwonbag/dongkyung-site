@@ -69,14 +69,38 @@ function buildMaterialsIndex(products) {
       const title = `${p.brand || ""} ${p.series || ""} ${p.code || ""}`.trim();
       const href = `./${safeId(p.id)}.html`;
       const price = formatKRW(p.price);
-      return `
-        <tr>
-          <td style="padding:12px;border-bottom:1px solid #eee;">${escapeHtml(title)}</td>
-          <td style="padding:12px;border-bottom:1px solid #eee;color:#666;">${escapeHtml(p.spec || "-")}</td>
-          <td style="padding:12px;border-bottom:1px solid #eee;">${escapeHtml(price)}</td>
-          <td style="padding:12px;border-bottom:1px solid #eee;"><a href="${href}" style="color:#222;text-decoration:none;border:1px solid #e5e5e5;background:#fafafa;padding:6px 10px;">보기</a></td>
-        </tr>
-      `.trim();
+      const meta = [
+  p.brand ? `브랜드: ${p.brand}` : null,
+  p.series ? `시리즈: ${p.series}` : null,
+  p.code ? `코드: ${p.code}` : null,
+].filter(Boolean).join(" · ");
+
+return `
+  <tr>
+    <td style="padding:12px;border-bottom:1px solid #eee;">
+      <div style="font-weight:700;">${escapeHtml(title)}</div>
+      <div style="margin-top:6px;font-size:12px;color:#666;line-height:1.4;">
+        ${escapeHtml(meta || "")}
+      </div>
+      ${p.usage ? `<div style="margin-top:6px;font-size:12px;color:#888;">용도: ${escapeHtml(p.usage)}</div>` : ""}
+    </td>
+
+    <td style="padding:12px;border-bottom:1px solid #eee;color:#666;">
+      ${escapeHtml(p.spec || "-")}
+    </td>
+
+    <td style="padding:12px;border-bottom:1px solid #eee;font-weight:700;">
+      ${escapeHtml(price)}
+    </td>
+
+    <td style="padding:12px;border-bottom:1px solid #eee;">
+      <a href="${href}" style="display:inline-block;border:1px solid #e5e5e5;background:#fff;padding:7px 10px;text-decoration:none;color:#222;">
+        보기
+      </a>
+    </td>
+  </tr>
+`;
+
     }).join("\n");
 
     return `
