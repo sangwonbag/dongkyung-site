@@ -127,6 +127,25 @@ return `
   <meta charset="UTF-8" />
   <title>자재 목록 | 동경바닥재</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+  .controls{
+    max-width:960px;margin:0 auto 18px auto;padding:0;
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  }
+  .controls input{
+    flex:1;min-width:240px;padding:10px 12px;border:1px solid #e5e5e5;border-radius:12px;font-size:14px;
+  }
+  .controls select{
+    padding:10px 12px;border:1px solid #e5e5e5;border-radius:12px;font-size:14px;background:#fff;
+  }
+  .cats{display:flex;gap:8px;flex-wrap:wrap}
+  .cats button{
+    border:1px solid #e5e5e5;background:#fff;border-radius:999px;
+    padding:8px 10px;font-size:13px;cursor:pointer;
+  }
+  .cats button.active{background:#111;color:#fff;border-color:#111}
+</style>
+
 </head>
 <body style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Sans KR',Arial,sans-serif;margin:0;background:#fff;color:#222;">
   <div style="max-width:960px;margin:0 auto;padding:32px 20px 80px;">
@@ -135,11 +154,98 @@ return `
     </div>
     <h1 style="font-size:26px;margin:0 0 6px;">자재 목록</h1>
     <div style="font-size:14px;color:#666;margin:0 0 18px;">카테고리별로 정리된 기준표</div>
+    <div class="controls">
+  <input id="q" type="search" placeholder="검색: 제품명/브랜드/시리즈/코드" />
+  <div id="cats" class="cats"></div>
+  <select id="sort">
+    <option value="default">정렬: 기본</option>
+    <option value="price_asc">가격: 낮은→높은</option>
+    <option value="price_desc">가격: 높은→낮은</option>
+  </select>
+</div>
+
 
     ${sections}
 
     <div style="margin-top:60px;font-size:13px;color:#888;">※ 가격/재고는 현장 상황에 따라 변동될 수 있습니다.</div>
   </div>
+  <script>
+(() => {
+  const q = document.getElementById('q');
+  const cats = document.getElementById('cats');
+  const sort = document.getElementById('sort');
+
+  const sections = [...document.querySelectorAll('h2')].map(h2 => {
+    const table = h2.nextElementSibling;
+    const tbody = table ? table.querySelector('tbody') : null;
+    const rows = tbody ? [...tbody.querySelectorAll('tr')] : [];
+    return { h2, table, tbody, rows, cat: (h2.textContent || '').trim() };
+  }).filter(s => s.table && s.tbody);
+
+  // 카테고리 버튼 자동 생성
+  const catList = ['전체', ...sections.map(s => s.cat)];
+  cats.innerHTML = catList.map((c, i) =>
+    `<button type="button" data-cat="${c}" class="${i===0?'active':''}">${c}</button>`
+  ).join('');
+
+  function rowText(row){
+    return row.textContent.replace(/\s+/g,' ').trim().toLowerCase();
+  }
+  function rowPrice(row){
+    const td = row.querySelector('td:nth-child(3)');
+    const t = td ? td.textContent : '';
+    const n = parseInt(t.replace(/[^\d]/g,''), 10);
+    return isNaN(n) ? 0 : n;
+  }
+
+  function apply(){
+    const query = (q.value || '').trim().toLowerCase();
+    const activeCat = cats.querySelector('button.active')?.dataset.cat || '전체';
+    const mode = sort.value || 'default';
+
+    sections.forEach(sec => {
+      const showCat = (activeCat === '전체' || sec.cat === activeCat);
+
+      if (!showCat) {
+        sec.h2.style.display = 'none';
+        sec.table.style.display = 'none';
+        return;
+      }
+
+      // 정렬(카테고리별)
+      if (mode === 'price_asc') sec.rows.sort((a,b)=>rowPrice(a)-rowPrice(b));
+      if (mode === 'price_desc') sec.rows.sort((a,b)=>rowPrice(b)-rowPrice(a));
+      sec.rows.forEach(r => sec.tbody.appendChild(r));
+
+      // 검색 필터
+      let anyVisible = false;
+      sec.rows.forEach(r => {
+        const ok = (!query || rowText(r).includes(query));
+        r.style.display = ok ? '' : 'none';
+        if (ok) anyVisible = true;
+      });
+
+      // 검색으로 비면 섹션 숨김
+      sec.h2.style.display = anyVisible ? '' : 'none';
+      sec.table.style.display = anyVisible ? '' : 'none';
+    });
+  }
+
+  cats.addEventListener('click', (e) => {
+    const btn = e.target.closest('button');
+    if (!btn) return;
+    cats.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    apply();
+  });
+
+  q.addEventListener('input', apply);
+  sort.addEventListener('change', apply);
+
+  apply();
+})();
+</script>
+
 </body>
 </html>`;
 }
