@@ -6,17 +6,6 @@
     "copyright": "ⓒ 2025 DongKyung Flooring. All rights reserved."
   },
   "products": [
-      {
-  "id": "test-001",
-  "category": "데코타일",
-  "brand": "테스트브랜드",
-  "series": "테스트시리즈",
-  "code": "T001",
-  "spec": "450 × 450 × 3.0mm",
-  "price": 24000,
-  "usage": "",
-  "note": ""
-},
     {
       "id": "kcc-sensstyle-ts5535m",
       "category": "데코타일",
@@ -42,6 +31,30 @@
       "usage": "상업시설",
       "note": "가격은 현장/수량에 따라 변동",
       "image": "images/jaeyoung_2108.jpg"
-    }
+    },
+     {
+  "id": "test-001",
+  "category": "데코타일",
+  "brand": "테스트브랜드",
+  "series": "테스트시리즈",
+  "code": "T001",
+  "spec": "450 × 450 × 3.0mm",
+  "price": 24000,
+  "usage": "",
+  "note": ""
+},
+    {
+  "id": "test-002",
+  "category": "데코타일",
+  "brand": "테스트브랜드2",
+  "series": "테스트시리즈2",
+  "code": "T002",
+  "spec": "600 × 600 × 3.0mm",
+  "price": 25000,
+  "usage": "사무실",
+  "note": "자동생성 테스트",
+  "image": "images/placeholder.jpg"
+}
+
   ]
 }
