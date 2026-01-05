@@ -27,6 +27,25 @@
     .cta strong { display:block; margin-bottom: 6px; }
     .footer { margin-top: 60px; font-size: 13px; color: #888; }
   </style>
+  .controls{
+  max-width:960px;margin:0 auto 14px auto;padding:0 20px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.controls input{
+  flex:1;min-width:240px;padding:10px 12px;border:1px solid var(--line);
+  border-radius:12px;font-size:14px;
+}
+.controls select{
+  padding:10px 12px;border:1px solid var(--line);border-radius:12px;font-size:14px;
+  background:#fff;
+}
+.cats{display:flex;gap:8px;flex-wrap:wrap}
+.cats button{
+  border:1px solid var(--line);background:#fff;border-radius:999px;
+  padding:8px 10px;font-size:13px;cursor:pointer;
+}
+.cats button.active{background:#111;color:#fff;border-color:#111;}
+
 </head>
 
 <body>
@@ -35,6 +54,17 @@
     <div class="topbar">
       <a href="../index.html">← 홈</a>
       <a href="./index.html">자재 목록</a>
+      <!-- Controls -->
+<div class="controls">
+  <input id="q" type="search" placeholder="검색: 제품명/브랜드/시리즈/품번" />
+  <div id="cats" class="cats"></div>
+  <select id="sort">
+    <option value="default">정렬: 기본</option>
+    <option value="price_asc">가격: 낮은→높은</option>
+    <option value="price_desc">가격: 높은→낮은</option>
+  </select>
+</div>
+
     </div>
 
     <h1>테스트브랜드 테스트시리즈 T001</h1>
@@ -61,11 +91,23 @@
       ※ 실제 색상은 모니터 환경에 따라 차이가 있을 수 있습니다.
     </div>
 
-    <div class="cta">
-      <strong>이 자재로 시공 견적이 필요하신가요?</strong>
-      📞 02-487-9775<br>
-      ⏰ 평일 07:00 ~ 18:00 / 토요일 07:00 ~ 12:00
-    </div>
+  <div class="cta">
+  <strong>이 자재로 견적이 필요하신가요?</strong>
+  <div style="margin:8px 0 10px;color:#444;">
+    📞 02-487-9775<br>
+    ⏰ 평일 07:00 ~ 18:00 / 토요일 07:00 ~ 12:00
+  </div>
+
+  <div style="display:flex;gap:10px;flex-wrap:wrap;">
+    <a href="tel:02-487-9775" style="border:1px solid #111;background:#111;color:#fff;padding:10px 12px;text-decoration:none;font-size:14px;">
+      전화하기
+    </a>
+    <a href="../contractor.html" style="border:1px solid #e5e5e5;background:#fff;color:#222;padding:10px 12px;text-decoration:none;font-size:14px;">
+      기사/일매칭 보기
+    </a>
+  </div>
+</div>
+
 
     <div class="footer">ⓒ 2025 DongKyung Flooring. All rights reserved.</div>
   </div>
