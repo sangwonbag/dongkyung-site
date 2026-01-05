@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{TITLE}} | 동경바닥재</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, "Noto Sans KR", Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #fff; color: #222;
+    }
+    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+    h1 { font-size: 26px; margin: 0 0 6px; }
+    .subtitle { font-size: 14px; color: #666; margin: 0 0 24px; }
+    .topbar { display:flex; gap:12px; align-items:center; margin-bottom: 18px; }
+    .topbar a { font-size: 13px; color:#444; text-decoration:none; border:1px solid #e5e5e5; padding:8px 10px; background:#fafafa; }
+    .image-box { width: 100%; max-width: 420px; margin: 0 0 30px; }
+    .image-box img { width: 100%; border: 1px solid #e5e5e5; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { padding: 14px 12px; border-bottom: 1px solid #eee; text-align: left; font-size: 15px; }
+    th { width: 180px; color: #555; background: #fafafa; font-weight: 500; }
+    .note { margin-top: 28px; font-size: 14px; color: #555; line-height: 1.6; }
+    .cta { margin-top: 40px; padding: 20px; border: 1px solid #ddd; background: #fafafa; font-size: 15px; }
+    .cta strong { display:block; margin-bottom: 6px; }
+    .footer { margin-top: 60px; font-size: 13px; color: #888; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="topbar">
+      <a href="../index.html">← 홈</a>
+      <a href="./index.html">자재 목록</a>
+    </div>
+
+    <h1>{{H1}}</h1>
+    <div class="subtitle">{{SUBTITLE}}</div>
+
+    <div class="image-box">
+      <img src="../{{IMAGE}}" alt="{{H1}}">
+    </div>
+
+    <table>
+      <tr><th>카테고리</th><td>{{CATEGORY}}</td></tr>
+      <tr><th>브랜드</th><td>{{BRAND}}</td></tr>
+      <tr><th>시리즈</th><td>{{SERIES}}</td></tr>
+      <tr><th>품번</th><td>{{CODE}}</td></tr>
+      <tr><th>규격</th><td>{{SPEC}}</td></tr>
+      <tr><th>단위</th><td>{{UNIT}}</td></tr>
+      <tr><th>판매가</th><td>{{PRICE}}</td></tr>
+      <tr><th>용도</th><td>{{USAGE}}</td></tr>
+      <tr><th>비고</th><td>{{NOTE}}</td></tr>
+    </table>
+
+    <div class="note">
+      ※ 현장 조건 및 수량에 따라 가격 변동이 있을 수 있습니다.<br>
+      ※ 실제 색상은 모니터 환경에 따라 차이가 있을 수 있습니다.
+    </div>
+
+    <div class="cta">
+      <strong>이 자재로 시공 견적이 필요하신가요?</strong>
+      📞 {{PHONE}}<br>
+      ⏰ {{HOURS}}
+    </div>
+
+    <div class="footer">{{COPYRIGHT}}</div>
+  </div>
+</body>
+</html>
