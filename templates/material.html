@@ -8,45 +8,134 @@
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, "Noto Sans KR", Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #fff; color: #222;
+        Roboto, "Noto Sans KR", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #222;
     }
-    .container { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
-    h1 { font-size: 26px; margin: 0 0 6px; }
-    .subtitle { font-size: 14px; color: #666; margin: 0 0 24px; }
-    .topbar { display:flex; gap:12px; align-items:center; margin-bottom: 18px; }
-    .topbar a { font-size: 13px; color:#444; text-decoration:none; border:1px solid #e5e5e5; padding:8px 10px; background:#fafafa; }
-    .image-box { width: 100%; max-width: 420px; margin: 0 0 30px; }
-    .image-box img { width: 100%; border: 1px solid #e5e5e5; }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { padding: 14px 12px; border-bottom: 1px solid #eee; text-align: left; font-size: 15px; }
-    th { width: 180px; color: #555; background: #fafafa; font-weight: 500; }
-    .note { margin-top: 28px; font-size: 14px; color: #555; line-height: 1.6; }
-    .cta { margin-top: 40px; padding: 20px; border: 1px solid #ddd; background: #fafafa; font-size: 15px; }
-    .cta strong { display:block; margin-bottom: 6px; }
-    .footer { margin-top: 60px; font-size: 13px; color: #888; }
-    .controls{
-  max-width:960px;margin:0 auto 14px auto;padding:0 20px;
-  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-}
-.controls input{
-  flex:1;min-width:240px;padding:10px 12px;border:1px solid #e5e5e5;
-  border-radius:12px;font-size:14px;
-}
-.controls select{
-  padding:10px 12px;border:1px solid #e5e5e5;
-border-radius:12px;font-size:14px;
-  background:#fff;
-}
-.cats{display:flex;gap:8px;flex-wrap:wrap}
-.cats button{
- border:1px solid #e5e5e5;
- background:#fff;border-radius:999px;
-  padding:8px 10px;font-size:13px;cursor:pointer;
-}
-.cats button.active{background:#111;color:#fff;border-color:#111;}
 
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+    }
+
+    /* 상단 */
+    .topbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .topbar a {
+      font-size: 13px;
+      color: #444;
+      text-decoration: none;
+      border: 1px solid #e5e5e5;
+      padding: 8px 10px;
+      background: #fafafa;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin: 0 0 6px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #666;
+      margin: 0 0 24px;
+    }
+
+    /* 이미지 */
+    .image-box {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 0 30px;
+    }
+
+    .image-box img {
+      width: 100%;
+      border: 1px solid #e5e5e5;
+    }
+
+    /* 테이블 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th,
+    td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      font-size: 15px;
+    }
+
+    th {
+      width: 180px;
+      color: #555;
+      background: #fafafa;
+      font-weight: 500;
+    }
+
+    /* 안내 문구 */
+    .note {
+      margin-top: 28px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: 40px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      font-size: 15px;
+    }
+
+    .cta strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .btn-primary {
+      border: 1px solid #111;
+      background: #111;
+      color: #fff;
+      padding: 10px 12px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .btn-secondary {
+      border: 1px solid #e5e5e5;
+      background: #fff;
+      color: #222;
+      padding: 10px 12px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* 푸터 */
+    .footer {
+      margin-top: 60px;
+      font-size: 13px;
+      color: #888;
+    }
   </style>
 </head>
 
@@ -56,8 +145,6 @@ border-radius:12px;font-size:14px;
     <div class="topbar">
       <a href="../index.html">← 홈</a>
       <a href="./index.html">자재 목록</a>
-</div>
-
     </div>
 
     <h1>{{H1}}</h1>
@@ -68,15 +155,42 @@ border-radius:12px;font-size:14px;
     </div>
 
     <table>
-      <tr><th>카테고리</th><td>{{CATEGORY}}</td></tr>
-      <tr><th>브랜드</th><td>{{BRAND}}</td></tr>
-      <tr><th>시리즈</th><td>{{SERIES}}</td></tr>
-      <tr><th>품번</th><td>{{CODE}}</td></tr>
-      <tr><th>규격</th><td>{{SPEC}}</td></tr>
-      <tr><th>단위</th><td>{{UNIT}}</td></tr>
-      <tr><th>판매가</th><td>{{PRICE}}</td></tr>
-      <tr><th>용도</th><td>{{USAGE}}</td></tr>
-      <tr><th>비고</th><td>{{NOTE}}</td></tr>
+      <tr>
+        <th>카테고리</th>
+        <td>{{CATEGORY}}</td>
+      </tr>
+      <tr>
+        <th>브랜드</th>
+        <td>{{BRAND}}</td>
+      </tr>
+      <tr>
+        <th>시리즈</th>
+        <td>{{SERIES}}</td>
+      </tr>
+      <tr>
+        <th>품번</th>
+        <td>{{CODE}}</td>
+      </tr>
+      <tr>
+        <th>규격</th>
+        <td>{{SPEC}}</td>
+      </tr>
+      <tr>
+        <th>단위</th>
+        <td>{{UNIT}}</td>
+      </tr>
+      <tr>
+        <th>판매가</th>
+        <td>{{PRICE}}</td>
+      </tr>
+      <tr>
+        <th>용도</th>
+        <td>{{USAGE}}</td>
+      </tr>
+      <tr>
+        <th>비고</th>
+        <td>{{NOTE}}</td>
+      </tr>
     </table>
 
     <div class="note">
@@ -84,25 +198,21 @@ border-radius:12px;font-size:14px;
       ※ 실제 색상은 모니터 환경에 따라 차이가 있을 수 있습니다.
     </div>
 
-  <div class="cta">
-  <strong>이 자재로 견적이 필요하신가요?</strong>
-  <div style="margin:8px 0 10px;color:#444;">
-    📞 {{PHONE}}<br>
-    ⏰ {{HOURS}}
-  </div>
+    <div class="cta">
+      <strong>이 자재로 견적이 필요하신가요?</strong>
+      <div style="margin:8px 0 10px;color:#444;">
+        📞 {{PHONE}}<br>
+        ⏰ {{HOURS}}
+      </div>
 
-  <div style="display:flex;gap:10px;flex-wrap:wrap;">
-    <a href="tel:{{PHONE}}" style="border:1px solid #111;background:#111;color:#fff;padding:10px 12px;text-decoration:none;font-size:14px;">
-      전화하기
-    </a>
-    <a href="../contractor.html" style="border:1px solid #e5e5e5;background:#fff;color:#222;padding:10px 12px;text-decoration:none;font-size:14px;">
-      기사/일매칭 보기
-    </a>
-  </div>
-</div>
-
+      <div class="cta-actions">
+        <a href="tel:{{PHONE}}" class="btn-primary">전화하기</a>
+        <a href="../contractor.html" class="btn-secondary">기사/일매칭 보기</a>
+      </div>
+    </div>
 
     <div class="footer">{{COPYRIGHT}}</div>
+
   </div>
 </body>
 </html>
